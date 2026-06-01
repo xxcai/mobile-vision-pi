@@ -4,7 +4,7 @@
 
 在 ui-perception 的 app 模块中直接添加最小 HTTP Server（不新建 SDK 模块），快速提供 `/ping` 和 `/capture` 端点供 PC 端调用。
 
-## 状态：待开始
+## 状态：代码完成，待真机验证 (2026-06-01)
 
 ## 设计方案
 
