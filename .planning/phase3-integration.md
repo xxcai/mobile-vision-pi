@@ -4,7 +4,13 @@
 
 将 Phase 1 的 mock Extension 升级为真实 HTTP 调用，与 Phase 2 的 Android HTTP Server 联调，验证完整的端到端流程。
 
-## 状态：待开始
+## 状态：已完成 (2026-06-01)
+
+### 验证结果
+- adb forward 自动设置成功
+- fetch 调用手机 /capture 端点成功返回真实 YAML
+- LLM 正确识别 27 个可交互元素、9 条消息、底部导航栏等
+- 修复：ctx.exec 不存在，改用 pi.exec 通过闭包传递
 
 ## 设计方案
 
