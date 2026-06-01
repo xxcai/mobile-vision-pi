@@ -6,16 +6,7 @@ export function createCaptureTool(pi) {
     name: "phone_capture_ui",
     label: "Capture Phone UI",
     description:
-      "Captures the current phone screen UI and returns it as structured YAML text showing the view hierarchy with roles, names, states, and interaction refs. Use this to understand what is currently displayed on the connected Android phone before performing any actions.",
-    promptSnippet: "Capture the current phone screen UI as structured YAML text",
-    promptGuidelines: [
-      "Use phone_capture_ui to see what is currently displayed on the phone before planning actions.",
-      "The YAML output uses roles like screen, toolbar, button, text, input, list, listitem, scroll, image, etc.",
-      "Interactive elements have [ref=n1] annotations — use these refs to identify clickable items.",
-      "States like [clickable], [clickable-inferred], [scrollable] indicate how elements can be interacted with.",
-      "phone_capture_ui works with text-only models — no screenshots needed.",
-      "Always call phone_capture_ui first when asked to interact with the phone, analyze the YAML, then decide on actions.",
-    ],
+      "Captures the current phone screen UI and returns it as structured YAML text showing the view hierarchy with roles, names, states, and interaction refs.",
     parameters: Type.Object({}),
 
     async execute(_toolCallId, _params, signal, onUpdate, _ctx) {

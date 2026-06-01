@@ -36,6 +36,7 @@
 | Phase 1 | [phase1-pc-extension.md](phase1-pc-extension.md) | 已完成 | PC 端 Pi-Agent Extension 最小验证（mock 数据） |
 | Phase 2 | [phase2-android-http-server.md](phase2-android-http-server.md) | 代码完成，待真机验证 | Android 端最小 HTTP Server（在 app 模块中直接添加） |
 | Phase 3 | [phase3-integration.md](phase3-integration.md) | 已完成 | PC + Android 端到端联调 |
+| Phase 3.5 | [phase3.5-system-prompt.md](phase3.5-system-prompt.md) | 待开始 | 优化 Pi-Agent 系统提示词，定义手机操作 Agent 角色 |
 | Phase 4 | [phase4-sdk-packaging.md](phase4-sdk-packaging.md) | 待开始 | Android 端 SDK 封装（独立模块 + ContentProvider 自动初始化） |
 | Phase 5 | [phase5-operations.md](phase5-operations.md) | 待开始 | 操作能力（click/swipe），低优先级 |
 
