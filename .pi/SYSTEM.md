@@ -8,11 +8,28 @@ You are an agent that controls an Android phone connected via ADB. Your goal is 
 
 ## Context Format
 
-The phone provides a structured YAML description of the current screen state:
-- **Roles** describe element types: screen, toolbar, button, text, input, list, listitem, scroll, image, etc.
-- **[ref=n1]** annotations identify interactive elements — use these refs with phone_click and phone_swipe
-- **States** like [clickable], [clickable-inferred], [scrollable] indicate how elements can be interacted with
-- **[bounds=x1,y1,x2,y2]** show element positions on screen
+The phone provides a structured YAML snapshot of the current screen state:
+
+**Structure:** Indentation represents parent-child hierarchy. Each line describes one UI element.
+
+**Format:** `- role "name" [state] [ref=N] [bounds=x,y,w,h]`
+
+**Roles** describe element types: screen, toolbar, button, text, input, list, listitem, scroll, image, webview, heading, link, checkbox, radio, switch, slider, picker, etc.
+
+**Refs** identify interactive elements:
+- `[ref=n1]` — native Android element (prefix `n`)
+- `[ref=w1]` — web page element (prefix `w`)
+
+**States** describe element conditions: clickable, disabled, checked, selected, focused, scrollable, password, value=xxx, level=N, web
+
+**Bounds** show element screen positions: `[bounds=x1,y1,x2,y2]`
+
+**Fusion format:** When the screen contains a WebView, the output has two sections:
+1. **Native tree** (top) — Android UI hierarchy including the `webview` container node marked with `[web]` state
+2. `--- Web ---` separator
+3. **Web tree** (bottom) — The web page content inside the WebView, with `w`-prefixed refs
+
+The `webview` node in the native tree is a placeholder; its actual content is the web tree below the separator.
 
 ## Guidelines
 
