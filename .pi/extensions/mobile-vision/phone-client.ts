@@ -77,6 +77,108 @@ export async function swipe(execFn, signal, direction, ref) {
   }
 }
 
+export async function typeText(execFn, signal, ref: string, text: string, clear = true) {
+  await ensureAdbForward(execFn, signal);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), CAPTURE_TIMEOUT_MS);
+  if (signal) signal.addEventListener("abort", () => controller.abort(), { once: true });
+  try {
+    const response = await fetch(`${BASE_URL}/type_text`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ref, text, clear }),
+      signal: controller.signal,
+    });
+    if (!response.ok) throw new Error(`Type text failed (${response.status}): ${await response.text()}`);
+    return await response.json();
+  } finally { clearTimeout(timeout); }
+}
+
+export async function longPress(execFn, signal, ref: string, duration = 500) {
+  await ensureAdbForward(execFn, signal);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), CAPTURE_TIMEOUT_MS);
+  if (signal) signal.addEventListener("abort", () => controller.abort(), { once: true });
+  try {
+    const response = await fetch(`${BASE_URL}/long_press`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ref, duration }),
+      signal: controller.signal,
+    });
+    if (!response.ok) throw new Error(`Long press failed (${response.status}): ${await response.text()}`);
+    return await response.json();
+  } finally { clearTimeout(timeout); }
+}
+
+export async function check(execFn, signal, ref: string) {
+  await ensureAdbForward(execFn, signal);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), CAPTURE_TIMEOUT_MS);
+  if (signal) signal.addEventListener("abort", () => controller.abort(), { once: true });
+  try {
+    const response = await fetch(`${BASE_URL}/check`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ref }),
+      signal: controller.signal,
+    });
+    if (!response.ok) throw new Error(`Check failed (${response.status}): ${await response.text()}`);
+    return await response.json();
+  } finally { clearTimeout(timeout); }
+}
+
+export async function uncheck(execFn, signal, ref: string) {
+  await ensureAdbForward(execFn, signal);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), CAPTURE_TIMEOUT_MS);
+  if (signal) signal.addEventListener("abort", () => controller.abort(), { once: true });
+  try {
+    const response = await fetch(`${BASE_URL}/uncheck`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ref }),
+      signal: controller.signal,
+    });
+    if (!response.ok) throw new Error(`Uncheck failed (${response.status}): ${await response.text()}`);
+    return await response.json();
+  } finally { clearTimeout(timeout); }
+}
+
+export async function selectOption(execFn, signal, ref: string, value: string) {
+  await ensureAdbForward(execFn, signal);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), CAPTURE_TIMEOUT_MS);
+  if (signal) signal.addEventListener("abort", () => controller.abort(), { once: true });
+  try {
+    const response = await fetch(`${BASE_URL}/select_option`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ref, value }),
+      signal: controller.signal,
+    });
+    if (!response.ok) throw new Error(`Select option failed (${response.status}): ${await response.text()}`);
+    return await response.json();
+  } finally { clearTimeout(timeout); }
+}
+
+export async function pressKey(execFn, signal, key: string) {
+  await ensureAdbForward(execFn, signal);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), CAPTURE_TIMEOUT_MS);
+  if (signal) signal.addEventListener("abort", () => controller.abort(), { once: true });
+  try {
+    const response = await fetch(`${BASE_URL}/press_key`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ key }),
+      signal: controller.signal,
+    });
+    if (!response.ok) throw new Error(`Press key failed (${response.status}): ${await response.text()}`);
+    return await response.json();
+  } finally { clearTimeout(timeout); }
+}
+
 export async function ping() {
   const response = await fetch(`${BASE_URL}/ping`);
   if (!response.ok) {
