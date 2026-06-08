@@ -41,6 +41,8 @@ Each line: `- role "name" [state] [ref=N] [bounds=x1,y1,x2,y2]`
 
 **WebView screens** have two sections: native tree on top, then `--- Web ---` separator, then web tree with `w`-prefixed refs. Both ref types (`n` and `w`) work with all tools.
 
+**Focused window capture:** The SDK captures the focused window. When a Dialog or PopupWindow is visible, the output shows the popup content (not the main page). Clicking popup elements works via ref as usual.
+
 ## Tool Reference
 
 ### phone_capture_ui
@@ -82,14 +84,10 @@ Select an option in a dropdown/combobox.
 - `value` (required): the option value to select
 
 ### phone_press_key
-Press a system navigation key.
-- `key` (required): `"back"` | `"enter"` | `"tab"` | `"home"` | `"menu"`
+Press the back key.
+- `key` (required): `"back"`
 
-Common uses:
-- `"back"` — dismiss keyboard, close dialog, go back
-- `"home"` — return to home screen
-- `"enter"` — submit/confirm
-- `"menu"` — open options menu
+Use to dismiss the on-screen keyboard after typing, close dialogs, or navigate back.
 
 ## Common Patterns
 
